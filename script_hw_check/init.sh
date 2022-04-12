@@ -1,0 +1,8 @@
+mkdir submissions
+mkdir submissions/input
+mkdir submissions/extracted
+mkdir submissions/verdict_summary
+mkdir submissions/graded
+mkdir submissions/graded_webcourse
+mkdir alternative_names
+mkdir local_problems

@@ -63,7 +63,7 @@ def assignment_id_clean(assignment_id):
     return assignment_id
 
 # Submissions directory
-submissions_dir = '../Submissions'
+submissions_dir = 'submissions'
 input_dir = os.path.join(submissions_dir, 'input')
 extracted_dir = os.path.join(submissions_dir, 'extracted')
 summary_dir = os.path.join(submissions_dir, 'verdict_summary')
