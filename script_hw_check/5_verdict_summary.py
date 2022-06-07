@@ -4,6 +4,7 @@ import csv
 import time
 import copy
 import pandas as pd
+from config import LATE_SUFFIX
 from datetime import datetime
 
 from config import possible_problems,\
@@ -76,8 +77,8 @@ if __name__=='__main__':
     # Make sure class and late submissions don't conflict
     for task, task_piv in task_pivs.items():
         # For late lesson submissions, account for problems solved in class
-        if task.endswith('late'):
-            lsn_task_piv = task_pivs[task.replace('_late','')]
+        if task.endswith(LATE_SUFFIX):
+            lsn_task_piv = task_pivs[task.replace(LATE_SUFFIX,'')]
             lsn_task_by_student = pd.DataFrame(columns=possible_problems[task])
             for idx, row in lsn_task_piv[possible_problems[task]].iterrows():
                 for student_id in idx.split(', '):
@@ -87,10 +88,10 @@ if __name__=='__main__':
             for idx, row in task_piv[possible_problems[task]].iterrows():
                 if idx in lsn_task_by_student.index:
                     task_piv.loc[idx,possible_problems[task]] = lsn_task_by_student.loc[idx].fillna(task_piv.loc[idx,possible_problems[task]])
-            if task.replace('_late','') in broken_problems:
-                for idx, row in task_piv[broken_problems[task.replace('_late','')]].iterrows():
+            if task.replace(LATE_SUFFIX,'') in broken_problems:
+                for idx, row in task_piv[broken_problems[task.replace(LATE_SUFFIX,'')]].iterrows():
                     # print(idx)
-                    for pid in broken_problems[task.replace('_late','')]:
+                    for pid in broken_problems[task.replace(LATE_SUFFIX,'')]:
                         # print(row[pid])
                         if row[pid] == 'accepted':
                             if idx not in broken_problems_counter:
